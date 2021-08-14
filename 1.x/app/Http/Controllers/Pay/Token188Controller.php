@@ -22,6 +22,7 @@ class Token188Controller extends PayController
             'body' => $this->orderInfo['order_id'],
             'coinName' => 'USDT-TRC20',
             'notifyUrl' => site_url() . $this->payInfo['pay_handleroute'] . '/notify_url',
+			'callBackUrl'=>site_url() . $this->payInfo['pay_handleroute'] . '/return_url?order_id=' . $this->orderInfo['order_id'],
             'timestamp' => $this->msectime(),
             'nonceStr' => $this->getNonceStr(16)
         ];
