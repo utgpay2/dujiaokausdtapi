@@ -24,24 +24,18 @@ Route::group(['prefix' => 'pay', 'namespace' => 'Pay', 'middleware' => ['dujiaok
     // Paysapi
     Route::get('paysapi/{payway}/{orderSN}', 'PaysapiController@gateway');
     Route::post('paysapi/notify_url', 'PaysapiController@notifyUrl');
+    Route::get('paysapi/return_url', 'PaysapiController@returnUrl')->name('paysapi-return');
     // payjs
     Route::get('payjs/{payway}/{orderSN}', 'PayjsController@gateway');
     Route::post('payjs/notify_url', 'PayjsController@notifyUrl');
     // 易支付
     Route::get('yipay/{payway}/{orderSN}', 'YipayController@gateway');
     Route::get('yipay/notify_url', 'YipayController@notifyUrl');
-	
-	// token188
-    Route::get('Token188/{payway}/{orderSN}', 'Token188Controller@gateway');
-    Route::any('Token188/notify_url', 'Token188Controller@notifyUrl');
-	
+    Route::get('yipay/return_url', 'YipayController@returnUrl')->name('yipay-return');
     // paypal
     Route::get('paypal/{payway}/{orderSN}', 'PaypalPayController@gateway');
     Route::get('paypal/return_url', 'PaypalPayController@returnUrl')->name('paypal-return');
     Route::any('paypal/notify_url', 'PaypalPayController@notifyUrl');
-    // Mugglepay
-    Route::get('mugglepay/{payway}/{orderSN}', 'MugglepayController@gateway');
-    Route::post('mugglepay/notify_url', 'MugglepayController@notifyUrl');
     // V免签
     Route::get('vpay/{payway}/{orderSN}', 'VpayController@gateway');
     Route::get('vpay/notify_url', 'VpayController@notifyUrl');
@@ -51,4 +45,11 @@ Route::group(['prefix' => 'pay', 'namespace' => 'Pay', 'middleware' => ['dujiaok
     Route::get('stripe/return_url','StripeController@returnUrl');
     Route::get('stripe/check','StripeController@check');
     Route::get('stripe/charge','StripeController@charge');
+    // Coinbase
+    Route::get('coinbase/{payway}/{orderSN}', 'CoinbaseController@gateway');
+    Route::post('coinbase/notify_url', 'CoinbaseController@notifyUrl');
+    // token188-usdt
+    Route::get('Token188/{payway}/{orderSN}', 'Token188Controller@gateway');
+    Route::any('Token188/notify_url', 'Token188Controller@notifyUrl');
+
 });
